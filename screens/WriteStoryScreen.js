@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, ToastAndroid } from 'react-native';
 import {Header} from 'react-native-elements'
 import db from '../config';
 import database from 'firebase'
@@ -19,11 +19,12 @@ export default class WriteStoryScreen extends React.Component {
         'title' : this.state.title,
         'story' : this.state.story
       })
+      ToastAndroid.show("Story Submitted!",toastAndroid.SHORT)
     }
   }
     render(){
         return(
-            <View>
+            <KeyboardAvoidingView>
                 <Header
                 backgroundColor={'#00edb1'}
                 centerComponent={{
@@ -32,39 +33,39 @@ export default class WriteStoryScreen extends React.Component {
                 fontsize:20 },
                 }} />   
 
-            <View style={styles.inputView}>
+            <KeyboardAvoidingView style={styles.inputView}>
                 <TextInput
                 onChangeText={text => this.state.author(text)}
                 style={styles.inputBox}
                 placeholder="Author"
                  />
-            </View>
+            </KeyboardAvoidingView>
 
-            <View style={styles.inputView}>
+            <KeyboardAvoidingView style={styles.inputView}>
                 <TextInput
                 onChangeText={text => this.state.title(text)}
                 style={styles.inputBox}
                 placeholder="Title"
                  />
-            </View>
+            </KeyboardAvoidingView>
 
-            <View style={styles.inputView}>
+            <KeyboardAvoidingView style={styles.inputView}>
                  <TextInput
                  onChangeText={text => this.state.story(text)}
                 style={styles.inputStoryBox}
                 multiline={true}
                 placeholder="Start Writing"
                  />
-            </View>
+            </KeyboardAvoidingView>
 
-            <View>     
+            <KeyboardAvoidingView>     
                  <TouchableOpacity 
                  style={styles.submitButton}
                  onPress={this.submitStory}>
                      <Text style={styles.buttonText}>Submit</Text>
                  </TouchableOpacity>
-            </View>     
-            </View>
+            </KeyboardAvoidingView>     
+            </KeyboardAvoidingView>
         )
     }
 }
